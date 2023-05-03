@@ -2,24 +2,31 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Main page</title>
+    <title>Played games</title>
 </head>
-<body>
-<h2>Messages</h2>
-<form method="post" action="/add_message">
-    <input type="text" name="text">
-    <input type="text" name="tag">
-    <button type="submit">Add post</button>
+<body style="background-color: #55D52B">
+<h2>Games</h2>
+<form method="post" action="/add">
+    Game:
+    <input type="text" name="game">
+    Year:
+    <input type="text" name="year">
+    <button type="submit">Add game</button>
 </form>
 
-<h3>Messages feed</h3>
-{% for message in messages %}
-<div>{{ message.text }}
-    {% for tag in message.tags %}
-        <b>#{{ tag.text }}</b>
-    {% endfor %}
+<h3>Games list</h3>
+{% for game in games %}
+<div><b>{{ game.id }}#{{ game.game }}#{{ game.year }}</b>
 </div>
 {% endfor %}
+<br>
+<form method="post" action="/delete">
+    id:<input type="number" name="id">
+    <button type="submit">Delete game</button>
+</form>
 
+<form method="post" action="/clear">
+    <button type="submit">Delete all games</button>
+</form>
 </body>
 </html>
